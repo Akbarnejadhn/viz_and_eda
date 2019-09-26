@@ -140,3 +140,95 @@ ggplot(weather_df, aes(x = date, y = tmax, color = name)) +
     ## Warning: Removed 3 rows containing missing values (geom_point).
 
 ![](viz_and_eda_files/figure-gfm/unnamed-chunk-4-1.png)<!-- -->
+
+## without datapoints()this new graph is inferior to the previous one
+
+``` r
+ggplot(weather_df, aes(x = date, y = tmax, color = name)) + 
+  geom_smooth(se = FALSE) 
+```
+
+    ## `geom_smooth()` using method = 'loess' and formula 'y ~ x'
+
+    ## Warning: Removed 3 rows containing non-finite values (stat_smooth).
+
+![](viz_and_eda_files/figure-gfm/unnamed-chunk-5-1.png)<!-- -->
+
+## 2D density
+
+``` r
+weather_df %>% 
+  ggplot(aes(x = tmin, y = tmax)) +
+  geom_bin2d()
+```
+
+    ## Warning: Removed 15 rows containing non-finite values (stat_bin2d).
+
+![](viz_and_eda_files/figure-gfm/unnamed-chunk-6-1.png)<!-- -->
+
+## histograms
+
+``` r
+ggplot(weather_df, aes(x = tmax, fill = name)) + 
+  geom_histogram(position = "dodge", binwidth = 2)
+```
+
+    ## Warning: Removed 3 rows containing non-finite values (stat_bin).
+
+![](viz_and_eda_files/figure-gfm/unnamed-chunk-7-1.png)<!-- -->
+
+``` r
+ggplot(weather_df, aes(x = tmax, fill = name)) + 
+  geom_histogram() +
+  facet_grid(~ name)
+```
+
+    ## `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.
+
+    ## Warning: Removed 3 rows containing non-finite values (stat_bin).
+
+![](viz_and_eda_files/figure-gfm/unnamed-chunk-8-1.png)<!-- -->
+
+## density plot instead of histograms
+
+``` r
+ggplot(weather_df, aes(x = tmax, fill = name)) + 
+  geom_density(alpha = .3)
+```
+
+    ## Warning: Removed 3 rows containing non-finite values (stat_density).
+
+![](viz_and_eda_files/figure-gfm/unnamed-chunk-9-1.png)<!-- -->
+
+``` r
+weather_df %>% 
+  ggplot(aes(x = name, y = tmax)) +
+  geom_boxplot()
+```
+
+    ## Warning: Removed 3 rows containing non-finite values (stat_boxplot).
+
+![](viz_and_eda_files/figure-gfm/unnamed-chunk-10-1.png)<!-- -->
+
+## violin plots and ridge plot (for a lot of groups and difficult to compare) - good for checking if something is going wrong
+
+``` r
+weather_df %>% 
+  ggplot(aes(x = name, y = tmax)) +
+  geom_violin()
+```
+
+    ## Warning: Removed 3 rows containing non-finite values (stat_ydensity).
+
+![](viz_and_eda_files/figure-gfm/unnamed-chunk-11-1.png)<!-- -->
+
+``` r
+  ggplot(weather_df, aes(x = tmax, y = name)) + 
+  geom_density_ridges(scale = .85)
+```
+
+    ## Picking joint bandwidth of 1.84
+
+    ## Warning: Removed 3 rows containing non-finite values (stat_density_ridges).
+
+![](viz_and_eda_files/figure-gfm/unnamed-chunk-12-1.png)<!-- -->
