@@ -1,0 +1,12 @@
+---
+title: "viz_and_eda"
+author: "Hana Akbarnejad"
+date: "9/26/2019"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+
+```
+
