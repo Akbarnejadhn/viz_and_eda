@@ -50,7 +50,7 @@ scatterplot
 ```
 
 ## colored plot
-```{r}
+```{r fig.width = 6}
   weather_df %>% 
   ggplot(aes(x = tmin, y = tmax)) +
   geom_point(aes(color = name), alpha = .4) +
@@ -122,8 +122,15 @@ weather_df %>%
 ```
 
 ```{r}
-
+ggp_ridge_temp =
   ggplot(weather_df, aes(x = tmax, y = name)) + 
   geom_density_ridges(scale = .85)
+ggp_ridge_temp
+```
+
+
+## saving a plot/ DO NOT use export!
+```{r}
+ggsave("redge_temp.pdf", ggp_ridge_temp)
 ```
 

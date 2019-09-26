@@ -223,8 +223,10 @@ weather_df %>%
 ![](viz_and_eda_files/figure-gfm/unnamed-chunk-11-1.png)<!-- -->
 
 ``` r
+ggp_ridge_temp =
   ggplot(weather_df, aes(x = tmax, y = name)) + 
   geom_density_ridges(scale = .85)
+ggp_ridge_temp
 ```
 
     ## Picking joint bandwidth of 1.84
@@ -232,3 +234,15 @@ weather_df %>%
     ## Warning: Removed 3 rows containing non-finite values (stat_density_ridges).
 
 ![](viz_and_eda_files/figure-gfm/unnamed-chunk-12-1.png)<!-- -->
+
+## saving a plot/ DO NOT use export\!
+
+``` r
+ggsave("redge_temp.pdf", ggp_ridge_temp)
+```
+
+    ## Saving 7 x 5 in image
+
+    ## Picking joint bandwidth of 1.84
+
+    ## Warning: Removed 3 rows containing non-finite values (stat_density_ridges).
