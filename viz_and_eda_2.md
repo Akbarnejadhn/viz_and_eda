@@ -78,9 +78,77 @@ weather_df %>%
   scale_x_continuous(
     breaks = c(-15, -5, 20),
     labels = c("-15 c", "-5 c", "20 c")
+  ) +
+  scale_y_continuous(
+    trans = "sqrt"
+  )
+```
+
+    ## Warning in self$trans$transform(x): NaNs produced
+
+    ## Warning: Transformation introduced infinite values in continuous y-axis
+
+    ## Warning: Removed 90 rows containing missing values (geom_point).
+
+![](viz_and_eda_2_files/figure-gfm/unnamed-chunk-1-1.png)<!-- -->
+
+COLORS\!
+
+``` r
+weather_df %>% 
+  ggplot(aes(x = tmin, y = tmax, color = name)) +
+  geom_point(alpha = .5) +
+  labs(
+  title = "Tempreture plot",
+  x = "Minimun Temp (C)",
+  y = "Maximum Temp (C)",
+  caption = "Data from NOAA via rnoaa package"
+  ) +
+  scale_color_hue(
+    name = "Weatjer Station",
+    h = c(50, 250)
   )
 ```
 
     ## Warning: Removed 15 rows containing missing values (geom_point).
 
-![](viz_and_eda_2_files/figure-gfm/unnamed-chunk-1-1.png)<!-- -->
+![](viz_and_eda_2_files/figure-gfm/unnamed-chunk-2-1.png)<!-- -->
+
+viridis package\!
+
+``` r
+ggp_base = 
+  weather_df %>% 
+  ggplot(aes(x = tmin, y = tmax)) + 
+  geom_point(aes(color = name), alpha = .5) + 
+  labs(
+    title = "Temperature plot",
+    x = "Minimum daily temperature (C)",
+    y = "Maxiumum daily temperature (C)",
+    caption = "Data from the rnoaa package"
+  ) + 
+  viridis::scale_color_viridis(
+    name = "Location", 
+    discrete = TRUE
+  )
+
+ggp_base
+```
+
+    ## Warning: Removed 15 rows containing missing values (geom_point).
+
+![](viz_and_eda_2_files/figure-gfm/unnamed-chunk-3-1.png)<!-- -->
+
+## THEMES\!
+
+where you write theme\_minimal before theme\!\!\!
+
+``` r
+ggp_base +
+  theme_minimal() +
+  theme(legend.position = "bottom")
+```
+
+    ## Warning: Removed 15 rows containing missing values (geom_point).
+
+![](viz_and_eda_2_files/figure-gfm/unnamed-chunk-4-1.png)<!-- -->
