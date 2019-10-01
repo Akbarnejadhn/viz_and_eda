@@ -94,6 +94,7 @@ ggp_base
 
 ```
 
+
 ## THEMES!
 
 where you write theme_minimal before theme!!!
@@ -102,6 +103,30 @@ where you write theme_minimal before theme!!!
 ggp_base +
   theme_minimal() +
   theme(legend.position = "bottom")
+
+```
+
+## more on dataset
+
+```{r}
+
+central_park = 
+  weather_df %>% 
+  filter(name == "CentralPark_NY")
+
+waikiki = 
+  weather_df %>% 
+  filter(name == "Waikiki_HA")
+
+ggplot(data = waikiki, aes(x = date, y = tmax, color = name)) + 
+  geom_point() + 
+  geom_line(data = central_park)
+
+```
+
+## multi-panel plot
+
+```{r}
 
 ```
 
