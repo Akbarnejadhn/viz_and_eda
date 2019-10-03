@@ -127,6 +127,20 @@ ggplot(data = waikiki, aes(x = date, y = tmax, color = name)) +
 ## multi-panel plot
 
 ```{r}
+ggp_scatter =
+  weather_df %>% 
+  ggplot(aes(x = tmin, y = tmax)) +
+  geom_point()
 
+```
+
+```{r}
+
+weather_df %>%
+  mutate(name = factor(name),
+  name = fct_relevel(name, c("Waikiki_HA", "CentralPark_NY", "Waterhole_WA"))) %>% 
+  ggplot(aes(x = name, y = tmax)) + 
+  geom_boxplot(aes(fill = name), color = "blue", alpha = .5) + 
+  theme(legend.position = "bottom")
 ```
 
